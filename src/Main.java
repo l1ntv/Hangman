@@ -44,7 +44,7 @@ public class Main {
                 Set<Character> usedLettersByUser = new HashSet<>();
                 char enteredLetter;
                 int userWrongs = 0;
-                String gameWord = Main.findRandomWord();
+                String gameWord = Main.findRandomWord().toLowerCase();
                 if (gameWord == null) {
                     System.out.println(Main.ERROR_MESSAGE_CONST);
                     return;
@@ -53,13 +53,13 @@ public class Main {
                 System.out.println(userWord);
                 while (Main.isGameContinues(userWord, gameWord, userWrongs)) {
                     System.out.print(Main.ENTER_LETTER_CONST);
-                    enteredLetter = in.next().charAt(0);
+                    enteredLetter = Character.toLowerCase(in.next().charAt(0));
                     while (!Main.isEnteredCharacterCorrect(enteredLetter)) {
                         System.out.println(Main.ENTER_CORRECT_LETTER_CONST);
                         System.out.print(Main.ENTER_LETTER_CONST);
-                        enteredLetter = in.next().charAt(0);
+                        enteredLetter = Character.toLowerCase(in.next().charAt(0));
                     }
-                    if (!usedLettersByUser.contains(Character.toLowerCase(enteredLetter))) {
+                    if (!usedLettersByUser.contains(enteredLetter)) {
                         if (Main.isLetterConsistInWord(gameWord, enteredLetter)) {
                             userWord = Main.updateWordMask(userWord, gameWord, enteredLetter);
                         } else {
