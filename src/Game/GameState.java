@@ -1,4 +1,4 @@
-package GameEvents;
+package Game;
 
 import Constants.AppConstants;
 

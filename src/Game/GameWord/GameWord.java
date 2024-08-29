@@ -1,4 +1,4 @@
-package GameWord;
+package Game.GameWord;
 
 import Constants.AppConstants;
 import Initializers.DictArrayInitiliazer;
@@ -7,19 +7,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Word {
+public class GameWord {
     private final static Random random = new Random();
     private static ArrayList<String> dict = new ArrayList<>();
 
-    private Word() {
+    private GameWord() {
     }
 
     public static String generate() throws IOException {
         if (dict.isEmpty()) {
             dict = DictArrayInitiliazer.initilizeDictArrayList(dict);
         }
-        int index = Word.generateIndex();
-        return Word.findWord(index);
+        int index = GameWord.generateIndex();
+        return GameWord.findWord(index);
     }
 
     public static boolean isLetterInWord(String word, String letter) {

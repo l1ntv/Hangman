@@ -2,11 +2,10 @@ package Game;
 
 import Constants.AppConstants;
 import Errors.DictErrorHandler;
-import GameEvents.GameState;
 import Initializers.HangingRackArrayInitiliazer;
 import Input.Game;
-import GameWord.Word;
-import GameWord.WordMask;
+import Game.GameWord.GameWord;
+import Game.GameWord.WordMask;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,14 +26,14 @@ public class GameCycle {
         if (hangingRack.isEmpty()) {
             hangingRack = HangingRackArrayInitiliazer.initilizeHangingRackArray(hangingRack);
         }
-        String gameWord = Word.generate();
+        String gameWord = GameWord.generate();
         DictErrorHandler.handle(gameWord);
         String userWord = WordMask.create(gameWord);
         WordMask.display(userWord);
         while (GameState.isGameContinues(userWord, gameWord, userWrongs)) {
             enteredLetter = Game.input();
             if (!usedLettersByUser.contains(enteredLetter)) {
-                if (Word.isLetterInWord(gameWord, enteredLetter)) {
+                if (GameWord.isLetterInWord(gameWord, enteredLetter)) {
                     userWord = WordMask.update(userWord, gameWord, enteredLetter);
                 } else {
                     userWrongs++;

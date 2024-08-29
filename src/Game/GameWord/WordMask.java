@@ -1,4 +1,4 @@
-package GameWord;
+package Game.GameWord;
 
 import Constants.AppConstants;
 
