@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GameCycleStarter {
+public class GameCycle {
 
     private static ArrayList<String> hangingRack = new ArrayList<>();
 
-    private GameCycleStarter() {
+    private GameCycle() {
     }
 
-    public static void execute() throws IOException {
+    public static void start() throws IOException {
         Set<String> usedLettersByUser = new HashSet<>();
         int userWrongs = 0;
         String enteredLetter;
@@ -31,10 +31,10 @@ public class GameCycleStarter {
         DictErrorHandler.handle(gameWord);
         String userWord = WordMask.create(gameWord);
         WordMask.display(userWord);
-        while (GameCycleStarter.isGameContinues(userWord, gameWord, userWrongs)) {
+        while (GameCycle.isGameContinues(userWord, gameWord, userWrongs)) {
             enteredLetter = Game.input();
             if (!usedLettersByUser.contains(enteredLetter)) {
-                if (GameCycleStarter.isLetterInWord(gameWord, enteredLetter)) {
+                if (GameCycle.isLetterInWord(gameWord, enteredLetter)) {
                     userWord = WordMask.update(userWord, gameWord, enteredLetter);
                 } else {
                     userWrongs++;

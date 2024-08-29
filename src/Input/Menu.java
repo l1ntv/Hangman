@@ -36,7 +36,7 @@ public class Menu {
     }
 
     private static boolean isItem(String choice) {
-        return (choice.equals(AppConstants.START_GAME_CHOICE) || choice.equals(AppConstants.END_GAME_CHOICE));
+        return (choice.equals(Integer.toString(AppConstants.START_GAME_CHOICE)) || choice.equals(Integer.toString(AppConstants.END_GAME_CHOICE)));
     }
 
     private static boolean isNumber(String choice) {

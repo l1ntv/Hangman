@@ -16,7 +16,7 @@ public class MenuStarter {
         while (true) {
             switch (Menu.fetchChoice()) {
                 case (AppConstants.START_GAME_CHOICE):
-                    GameCycleStarter.execute();
+                    GameCycle.start();
                     break;
                 case (AppConstants.END_GAME_CHOICE):
                     System.out.println(AppConstants.END_GAME);
