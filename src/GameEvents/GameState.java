@@ -23,6 +23,10 @@ public class GameState {
         return (wrongsCount == AppConstants.LOST_COUNT_WRONGS);
     }
 
+    public static boolean isGameContinues(String userWord, String gameWord, int wrongs) {
+        return (!GameState.isWin(userWord, gameWord) && !GameState.isLost(wrongs));
+    }
+
     private static void displayWinMessage() {
         System.out.println(AppConstants.WIN_MESSAGE);
     }

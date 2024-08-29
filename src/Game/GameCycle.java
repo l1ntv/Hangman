@@ -5,7 +5,7 @@ import Errors.DictErrorHandler;
 import GameEvents.GameState;
 import Initializers.HangingRackArrayInitiliazer;
 import Input.Game;
-import GameWord.WordGenerator;
+import GameWord.Word;
 import GameWord.WordMask;
 
 import java.io.IOException;
@@ -27,14 +27,14 @@ public class GameCycle {
         if (hangingRack.isEmpty()) {
             hangingRack = HangingRackArrayInitiliazer.initilizeHangingRackArray(hangingRack);
         }
-        String gameWord = WordGenerator.generate();
+        String gameWord = Word.generate();
         DictErrorHandler.handle(gameWord);
         String userWord = WordMask.create(gameWord);
         WordMask.display(userWord);
-        while (GameCycle.isGameContinues(userWord, gameWord, userWrongs)) {
+        while (GameState.isGameContinues(userWord, gameWord, userWrongs)) {
             enteredLetter = Game.input();
             if (!usedLettersByUser.contains(enteredLetter)) {
-                if (GameCycle.isLetterInWord(gameWord, enteredLetter)) {
+                if (Word.isLetterInWord(gameWord, enteredLetter)) {
                     userWord = WordMask.update(userWord, gameWord, enteredLetter);
                 } else {
                     userWrongs++;
@@ -49,18 +49,5 @@ public class GameCycle {
             System.out.println("Используемые буквы: " + String.join(", ", usedLettersByUser));
         }
         GameState.determine(userWord, gameWord, userWrongs);
-    }
-
-    private static boolean isGameContinues(String userWord, String gameWord, int wrongs) {
-        return (!GameState.isWin(userWord, gameWord) && !GameState.isLost(wrongs));
-    }
-
-    private static boolean isLetterInWord(String word, String letter) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) == letter.charAt(AppConstants.FIRST_INDEX)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
